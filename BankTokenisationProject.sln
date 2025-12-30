@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenization.Contracts", "Tokenization.Contracts\Tokenization.Contracts.csproj", "{092E488A-CFF0-4A0B-A047-D6A6AAE9F2F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenization.Common", "Tokenization.Common\Tokenization.Common.csproj", "{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenization.Server", "Tokenization.Server\Tokenization.Server.csproj", "{B8A5DE6D-6A23-41A3-A6E4-AE2C73C52047}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenization.Client", "Tokenization.Client\Tokenization.Client.csproj", "{4BB1FF22-22E0-4BC7-A22A-70DC84E50BAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{092E488A-CFF0-4A0B-A047-D6A6AAE9F2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{092E488A-CFF0-4A0B-A047-D6A6AAE9F2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{092E488A-CFF0-4A0B-A047-D6A6AAE9F2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{092E488A-CFF0-4A0B-A047-D6A6AAE9F2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A5DE6D-6A23-41A3-A6E4-AE2C73C52047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A5DE6D-6A23-41A3-A6E4-AE2C73C52047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A5DE6D-6A23-41A3-A6E4-AE2C73C52047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A5DE6D-6A23-41A3-A6E4-AE2C73C52047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BB1FF22-22E0-4BC7-A22A-70DC84E50BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB1FF22-22E0-4BC7-A22A-70DC84E50BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BB1FF22-22E0-4BC7-A22A-70DC84E50BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB1FF22-22E0-4BC7-A22A-70DC84E50BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F86290D-84C9-41DF-8C27-D48318D91A8F}
+	EndGlobalSection
+EndGlobal

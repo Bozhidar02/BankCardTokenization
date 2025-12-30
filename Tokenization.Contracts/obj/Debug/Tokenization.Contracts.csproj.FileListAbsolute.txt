@@ -1,0 +1,6 @@
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\bin\Debug\Tokenization.Contracts.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\bin\Debug\Tokenization.Contracts.pdb
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.pdb

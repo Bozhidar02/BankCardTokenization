@@ -1,0 +1,6 @@
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Common\bin\Debug\Tokenization.Common.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Common\bin\Debug\Tokenization.Common.pdb
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Common\obj\Debug\Tokenization.Common.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Common\obj\Debug\Tokenization.Common.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Common\obj\Debug\Tokenization.Common.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Common\obj\Debug\Tokenization.Common.pdb
