@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardValidator.cs" />
+    <Compile Include="TokenGenerator.cs" />
     <Compile Include="TokenRecord.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserRole.cs" />
