@@ -38,12 +38,24 @@ namespace Tokenization.Server
 
         private void ExportToFile(List<TokenPair> data, string fileName)
         {
-            StreamWriter writer = new StreamWriter(fileName);
+            // Define a folder relative to your project
+            string repoRoot = AppDomain.CurrentDomain.BaseDirectory; // base folder of running app
+            string reportsFolder = Path.Combine(repoRoot, "Reports");
 
-            foreach (var r in data)
-                writer.WriteLine($"{r.CardNumber} -> {r.Token}");
+            // Ensure the folder exists
+            if (!Directory.Exists(reportsFolder))
+                Directory.CreateDirectory(reportsFolder);
 
-            MessageBox.Show($"Report saved: {fileName}");
+            string fullPath = Path.Combine(reportsFolder, fileName);
+
+            // Use 'using' to ensure the file is properly written and closed
+            using (StreamWriter writer = new StreamWriter(fullPath))
+            {
+                foreach (var r in data)
+                    writer.WriteLine($"{r.CardNumber} -> {r.Token}");
+            }
+
+            MessageBox.Show($"Report saved: {fullPath}");
         }
 
         protected override void OnClosed(EventArgs e)
