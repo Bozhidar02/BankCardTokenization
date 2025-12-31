@@ -7,3 +7,12 @@ C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contrac
 C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\bin\Debug\Tokenization.Common.dll
 C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\bin\Debug\Tokenization.Common.pdb
 C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Contracts\obj\Debug\Tokeniza.4AD7072C.Up2Date
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\bin\Debug\Tokenization.Contracts.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\bin\Debug\Tokenization.Contracts.pdb
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\bin\Debug\Tokenization.Common.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\bin\Debug\Tokenization.Common.pdb
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\obj\Debug\Tokeniza.4AD7072C.Up2Date
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.dll
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Contracts\obj\Debug\Tokenization.Contracts.pdb

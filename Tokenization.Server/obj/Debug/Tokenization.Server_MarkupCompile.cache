@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\obj\Debug\
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Server\obj\Debug\
 Tokenization.Server
 none
 false
 DEBUG;TRACE
-C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\App.xaml
+C:\Users\Administrator\source\repos\BankTokenisationProject\BankCardTokenization\Tokenization.Server\App.xaml
 2-1140546874
 
 11-1710667989
-16-405124252
+16-614098506
 AdminWindow.xaml;MainWindow.xaml;
 
 False
