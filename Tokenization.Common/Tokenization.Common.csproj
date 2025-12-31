@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="CardValidator.cs" />
     <Compile Include="TokenGenerator.cs" />
-    <Compile Include="TokenRecord.cs" />
+    <Compile Include="TokenPair.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

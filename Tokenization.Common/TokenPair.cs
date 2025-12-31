@@ -1,6 +1,6 @@
 ﻿namespace Tokenization.Common
 {
-    public class TokenRecord
+    public class TokenPair
     {
         public string CardNumber { get; set; }
         public string Token { get; set; }

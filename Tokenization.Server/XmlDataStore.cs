@@ -36,32 +36,32 @@ namespace Tokenization.Server
             ser.Serialize(fs, users);
         }
 
-        public static List<TokenRecord> LoadTokens()
+        public static List<TokenPair> LoadTokens()
         {
             if (!File.Exists(TokensFile))
-                return new List<TokenRecord>();
+                return new List<TokenPair>();
 
-            XmlSerializer ser = new XmlSerializer(typeof(List<TokenRecord>));
+            XmlSerializer ser = new XmlSerializer(typeof(List<TokenPair>));
 
             try
             {
                 using (FileStream fs = new FileStream(TokensFile, FileMode.Open, FileAccess.Read))
                 {
-                    return (List<TokenRecord>)ser.Deserialize(fs);
+                    return (List<TokenPair>)ser.Deserialize(fs);
                 }
             }
             catch
             {
                 // at this point the FileStream is CLOSED
                 File.Delete(TokensFile);
-                return new List<TokenRecord>();
+                return new List<TokenPair>();
             }
         }
 
 
-        public static void SaveTokens(List<TokenRecord> tokens)
+        public static void SaveTokens(List<TokenPair> tokens)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(List<TokenRecord>));
+            XmlSerializer ser = new XmlSerializer(typeof(List<TokenPair>));
             FileStream fs = new FileStream(TokensFile, FileMode.Create);
             ser.Serialize(fs, tokens);
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -8,14 +9,19 @@ namespace Tokenization.Server
 {
     public partial class AdminWindow : Window
     {
-        private readonly List<TokenRecord> tokens;
+        private readonly List<TokenPair> tokens;
 
         public AdminWindow()
         {
             InitializeComponent();
 
             tokens = XmlDataStore.LoadTokens();
-            dgTokens.ItemsSource = tokens;
+            dgTokens.ItemsSource = TokenStore.Tokens;
+
+            foreach (var record in XmlDataStore.LoadTokens())
+            {
+                TokenStore.Tokens.Add(record);
+            }
         }
 
         private void BtnExportByCard_Click(object sender, RoutedEventArgs e)
@@ -30,7 +36,7 @@ namespace Tokenization.Server
             ExportToFile(sorted, "Report_By_Token.txt");
         }
 
-        private void ExportToFile(List<TokenRecord> data, string fileName)
+        private void ExportToFile(List<TokenPair> data, string fileName)
         {
             StreamWriter writer = new StreamWriter(fileName);
 
@@ -39,5 +45,14 @@ namespace Tokenization.Server
 
             MessageBox.Show($"Report saved: {fileName}");
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            // persist tokens on server shutdown
+            XmlDataStore.SaveTokens(TokenStore.Tokens.ToList());
+        }
+
     }
 }
