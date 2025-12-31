@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid ItemsSource="{Binding}"
+          AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Card Number"
+                            Binding="{Binding CardNumber}" />
+                <DataGridTextColumn Header="Token"
+                            Binding="{Binding Token}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

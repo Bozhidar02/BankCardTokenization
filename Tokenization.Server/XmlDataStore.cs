@@ -15,9 +15,18 @@ namespace Tokenization.Server
             if (!File.Exists(UsersFile))
                 return new List<User>();
 
-            XmlSerializer ser = new XmlSerializer(typeof(List<User>));
-            FileStream fs = new FileStream(UsersFile, FileMode.Open);
-            return (List<User>)ser.Deserialize(fs);
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(List<User>));
+                FileStream fs = new FileStream(UsersFile, FileMode.Open);
+                return (List<User>)ser.Deserialize(fs);
+            }
+            catch
+            {
+                // users.xml exists but is invalid or empty
+                File.Delete(UsersFile);
+                return new List<User>();
+            }
         }
 
         public static void SaveUsers(List<User> users)
@@ -33,9 +42,22 @@ namespace Tokenization.Server
                 return new List<TokenRecord>();
 
             XmlSerializer ser = new XmlSerializer(typeof(List<TokenRecord>));
-            FileStream fs = new FileStream(TokensFile, FileMode.Open);
-            return (List<TokenRecord>)ser.Deserialize(fs);
+
+            try
+            {
+                using (FileStream fs = new FileStream(TokensFile, FileMode.Open, FileAccess.Read))
+                {
+                    return (List<TokenRecord>)ser.Deserialize(fs);
+                }
+            }
+            catch
+            {
+                // at this point the FileStream is CLOSED
+                File.Delete(TokensFile);
+                return new List<TokenRecord>();
+            }
         }
+
 
         public static void SaveTokens(List<TokenRecord> tokens)
         {

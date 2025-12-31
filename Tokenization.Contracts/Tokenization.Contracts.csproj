@@ -46,5 +46,11 @@
     <Compile Include="ITokenizationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tokenization.Common\Tokenization.Common.csproj">
+      <Project>{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}</Project>
+      <Name>Tokenization.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

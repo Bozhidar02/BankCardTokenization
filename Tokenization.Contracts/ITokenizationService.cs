@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using Tokenization.Common;
 
 namespace Tokenization.Contracts
 {
@@ -6,7 +7,8 @@ namespace Tokenization.Contracts
     public interface ITokenizationService
     {
         [OperationContract]
-        bool Login(string username, string password);
+        UserRole? Login(string username, string password);
+
 
         [OperationContract]
         string RegisterToken(string cardNumber);

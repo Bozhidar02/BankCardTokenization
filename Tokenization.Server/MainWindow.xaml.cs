@@ -23,6 +23,7 @@ namespace Tokenization.Server
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = TokenStore.Tokens;
         }
     }
 }

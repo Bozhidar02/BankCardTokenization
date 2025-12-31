@@ -1,0 +1,45 @@
+﻿<Window x:Class="Tokenization.Server.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Server Administration"
+        Height="450"
+        Width="600">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Token list -->
+        <DataGrid x:Name="dgTokens"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Card Number"
+                                    Binding="{Binding CardNumber}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Token"
+                                    Binding="{Binding Token}"
+                                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,0">
+
+            <Button Content="Export by Card Number"
+                    Width="180"
+                    Margin="5"
+                    Click="BtnExportByCard_Click"/>
+
+            <Button Content="Export by Token"
+                    Width="150"
+                    Margin="5"
+                    Click="BtnExportByToken_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

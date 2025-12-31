@@ -98,6 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tokenization.Common\Tokenization.Common.csproj">
+      <Project>{7385CAF4-E70F-478D-9C8F-903FCE2F7B64}</Project>
+      <Name>Tokenization.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tokenization.Contracts\Tokenization.Contracts.csproj">
       <Project>{092e488a-cff0-4a0b-a047-d6a6aae9f2f7}</Project>
       <Name>Tokenization.Contracts</Name>

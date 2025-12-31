@@ -18,3 +18,5 @@ C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\
 C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\obj\Debug\Tokenization.Server.pdb
 C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\bin\Debug\Tokenization.Contracts.dll
 C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\bin\Debug\Tokenization.Contracts.pdb
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\obj\Debug\AdminWindow.baml
+C:\Users\Administrator\source\repos\BankTokenisationProject\Tokenization.Server\obj\Debug\AdminWindow.g.cs

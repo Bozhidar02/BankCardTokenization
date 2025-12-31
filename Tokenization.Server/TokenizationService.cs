@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using Tokenization.Common;
@@ -6,76 +7,104 @@ using Tokenization.Contracts;
 
 namespace Tokenization.Server
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class TokenizationService : ITokenizationService
     {
-        private readonly List<User> users;
-        private readonly List<TokenRecord> tokens;
+        // persistent storage
+        private static Dictionary<string, string> tokenMap;
+        private static List<User> users;
+
+        static TokenizationService()
+        {
+            tokenMap = TokenDataStore.LoadTokens();
+        }
 
         public TokenizationService()
         {
-            users = XmlDataStore.LoadUsers();
-            tokens = XmlDataStore.LoadTokens();
+            if (users == null)
+            {
+                users = XmlDataStore.LoadUsers();
 
-            if (!users.Any())
-                SeedUsers();
+                if (users.Count == 0)
+                {
+                    users.Add(new User
+                    {
+                        Username = "admin",
+                        Password = "1234",
+                        Role = UserRole.RegisterToken
+                    });
+
+                    users.Add(new User
+                    {
+                        Username = "reader",
+                        Password = "1234",
+                        Role = UserRole.ResolveToken
+                    });
+
+                    XmlDataStore.SaveUsers(users);
+                }
+            }
         }
 
-        public bool Login(string username, string password)
+        public UserRole? Login(string username, string password)
         {
-            return users.Any(u =>
+            var user = users.FirstOrDefault(u =>
                 u.Username == username &&
                 u.Password == password);
+
+            return user?.Role;
         }
 
         public string RegisterToken(string cardNumber)
         {
-            if (!CardValidator.IsValidCardNumber(cardNumber))
-                return "INVALID CARD";
+            string normalizedCard = Normalize(cardNumber);
 
-            if (tokens.Any(t => t.CardNumber == cardNumber))
-                return "CARD ALREADY TOKENIZED";
+            if (!IsValid(normalizedCard))
+                throw new FaultException("Invalid card number");
 
-            var existingTokens = tokens
-                .Select(t => t.Token)
-                .ToHashSet();
+            string token = GenerateNumericToken();
 
-            string token = TokenGenerator.GenerateToken(cardNumber, existingTokens);
+            tokenMap[token] = normalizedCard;
+            TokenDataStore.SaveTokens(tokenMap);
 
-            tokens.Add(new TokenRecord
-            {
-                CardNumber = cardNumber,
-                Token = token
-            });
+            TokenStore.Add(token, normalizedCard);
 
-            XmlDataStore.SaveTokens(tokens);
-
-            return token;
+            return Format(token);
         }
 
         public string ResolveToken(string token)
         {
-            var record = tokens.FirstOrDefault(t => t.Token == token);
-            return record?.CardNumber ?? "TOKEN NOT FOUND";
+            string normalizedToken = Normalize(token);
+
+            if (!tokenMap.ContainsKey(normalizedToken))
+                return null;
+
+            return Format(tokenMap[normalizedToken]);
         }
 
-        private void SeedUsers()
+        // ===== helper methods (EXPLICIT) =====
+
+        private static bool IsValid(string value)
         {
-            users.Add(new User
-            {
-                Username = "admin",
-                Password = "1234",
-                Role = UserRole.RegisterToken
-            });
+            return value.Length == 16 && value.All(char.IsDigit);
+        }
 
-            users.Add(new User
-            {
-                Username = "reader",
-                Password = "1234",
-                Role = UserRole.ResolveToken
-            });
+        private static string Normalize(string value)
+        {
+            return value.Replace(" ", "");
+        }
 
-            XmlDataStore.SaveUsers(users);
+        private static string Format(string value)
+        {
+            return string.Join(" ",
+                Enumerable.Range(0, 4)
+                          .Select(i => value.Substring(i * 4, 4)));
+        }
+
+        private static string GenerateNumericToken()
+        {
+            Random rnd = new Random();
+            return string.Concat(Enumerable.Range(0, 16)
+                .Select(_ => rnd.Next(0, 10)));
         }
     }
 }
