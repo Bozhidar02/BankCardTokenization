@@ -73,13 +73,23 @@ namespace Tokenization.Client
                 return;
             }
 
-            string card = client.ResolveToken(token);
+            // Normalize token before sending to server
+            string normalizedToken = NormalizeToken(token);
+
+            string card = client.ResolveToken(normalizedToken);
 
             if (card == null)
                 txtResult.Text = "Token not found.";
             else
                 txtResult.Text = $"Card number:\n{card}";
         }
+
+        // Helper method to remove spaces from token
+        private string NormalizeToken(string token)
+        {
+            return token.Replace(" ", "");
+        }
+
 
 
         private bool IsValidCardNumber(string card)

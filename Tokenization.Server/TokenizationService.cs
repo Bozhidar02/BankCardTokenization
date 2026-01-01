@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Windows;
 using Tokenization.Common;
 using Tokenization.Contracts;
 
@@ -12,6 +13,7 @@ namespace Tokenization.Server
         // persistent storage
         private static Dictionary<string, string> tokenMap;
         private static List<User> users;
+        private static readonly Random random = new Random();
 
         static TokenizationService()
         {
@@ -68,18 +70,25 @@ namespace Tokenization.Server
 
             TokenStore.Add(token, normalizedCard);
 
-            return Format(token);
+            return token;//Format(token);
         }
 
         public string ResolveToken(string token)
         {
+            // Normalize input token
+            
             string normalizedToken = Normalize(token);
-
-            if (!tokenMap.ContainsKey(normalizedToken))
+            MessageBox.Show("Token number: " + normalizedToken);
+            string cardNumber;
+            // Check if the normalized token exists in the map
+            if (!tokenMap.TryGetValue(normalizedToken, out cardNumber) && !tokenMap.TryGetValue(token, out cardNumber))
                 return null;
 
-            return Format(tokenMap[normalizedToken]);
+            // Format the card number for display only
+            MessageBox.Show("Token number: " + Format(cardNumber));
+            return Format(cardNumber);
         }
+
 
         // ===== helper methods (EXPLICIT) =====
 
@@ -102,9 +111,25 @@ namespace Tokenization.Server
 
         private static string GenerateNumericToken()
         {
-            Random rnd = new Random();
-            return string.Concat(Enumerable.Range(0, 16)
-                .Select(_ => rnd.Next(0, 10)));
+            var sum = 0;
+            int[] allowedNums = { 1, 2, 7, 8, 9 };
+            int[] generatedNumbers = new int[16];
+            do
+            {
+                int position = random.Next(0, 5);
+                generatedNumbers[0] = allowedNums[position];
+                sum = allowedNums[position];
+                //string result = allowedNums[position];
+                for (int i = 1; i < 16; i++)
+                {
+                    generatedNumbers[i] = random.Next(0, 10);
+                    sum += generatedNumbers[i];
+                }
+            } while (sum % 10 != 0);
+            return string.Join("", generatedNumbers);
+            //return result + string.Concat(Enumerable.Range(0, 15)
+            //    .Select(_ => random.Next(0, 10)));
+
         }
     }
 }

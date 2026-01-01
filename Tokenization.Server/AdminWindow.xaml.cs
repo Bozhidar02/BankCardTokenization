@@ -63,7 +63,7 @@ namespace Tokenization.Server
             base.OnClosed(e);
 
             // persist tokens on server shutdown
-            XmlDataStore.SaveTokens(TokenStore.Tokens.ToList());
+            //XmlDataStore.SaveTokens(TokenStore.Tokens.ToList());
         }
 
     }
