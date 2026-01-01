@@ -78,14 +78,12 @@ namespace Tokenization.Server
             // Normalize input token
             
             string normalizedToken = Normalize(token);
-            MessageBox.Show("Token number: " + normalizedToken);
             string cardNumber;
             // Check if the normalized token exists in the map
             if (!tokenMap.TryGetValue(normalizedToken, out cardNumber) && !tokenMap.TryGetValue(token, out cardNumber))
                 return null;
 
             // Format the card number for display only
-            MessageBox.Show("Token number: " + Format(cardNumber));
             return Format(cardNumber);
         }
 
