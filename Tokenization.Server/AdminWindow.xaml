@@ -40,6 +40,10 @@
                     Width="150"
                     Margin="5"
                     Click="BtnExportByToken_Click"/>
+            <Button Content="Refresh"
+                    Width="150"
+                    Margin="5"
+                    Click="BtnRefresh_Click"/>
         </StackPanel>
     </Grid>
 </Window>

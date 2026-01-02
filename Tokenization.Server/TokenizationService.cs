@@ -69,8 +69,9 @@ namespace Tokenization.Server
                 };
             }
 
-            string token = GenerateNumericToken();
+            string token = GenerateNumericToken(normalized);
             tokenMap[token] = normalized;
+            TokenDataStore.SaveTokens(tokenMap);
 
             return new TokenResponse
             {
@@ -153,27 +154,45 @@ namespace Tokenization.Server
                           .Select(i => value.Substring(i * 4, 4)));
         }
 
-        private static string GenerateNumericToken()
+        private static string GenerateNumericToken(string cardNumber)
         {
-            var sum = 0;
-            int[] allowedNums = { 1, 2, 7, 8, 9 };
-            int[] generatedNumbers = new int[16];
+            int[] token = new int[16];
+            int sum;
+
             do
             {
-                int position = random.Next(0, 5);
-                generatedNumbers[0] = allowedNums[position];
-                sum = allowedNums[position];
-                //string result = allowedNums[position];
-                for (int i = 1; i < 16; i++)
-                {
-                    generatedNumbers[i] = random.Next(0, 10);
-                    sum += generatedNumbers[i];
-                }
-            } while (sum % 10 != 0);
-            return string.Join("", generatedNumbers);
-            //return result + string.Concat(Enumerable.Range(0, 15)
-            //    .Select(_ => random.Next(0, 10)));
+                sum = 0;
 
+                // ---- FIRST DIGIT (must NOT be 3,4,5,6) ----
+                int[] allowedFirstDigits = { 0, 1, 2, 7, 8, 9 };
+                token[0] = allowedFirstDigits[random.Next(allowedFirstDigits.Length)];
+                sum += token[0];
+
+                // ---- NEXT 11 DIGITS (random, must differ from card) ----
+                for (int i = 1; i < 12; i++)
+                {
+                    int digit;
+                    do
+                    {
+                        digit = random.Next(0, 10);
+                    }
+                    while (digit == (cardNumber[i] - '0'));
+
+                    token[i] = digit;
+                    sum += digit;
+                }
+
+                // ---- LAST 4 DIGITS (must match card) ----
+                for (int i = 12; i < 16; i++)
+                {
+                    token[i] = cardNumber[i] - '0';
+                    sum += token[i];
+                }
+
+            } while (sum % 10 == 0); // must NOT be divisible by 10
+
+            return string.Concat(token);
         }
+
     }
 }
