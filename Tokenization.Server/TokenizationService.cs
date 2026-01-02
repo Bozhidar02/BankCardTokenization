@@ -103,13 +103,11 @@ namespace Tokenization.Server
             value = Normalize(value);
 
             if (value.Length != 16) { 
-                MessageBox.Show("Invalid length!!!!");
                 return false;
             }
 
             // Must start with 3, 4, 5, or 6
             if (!"3456".Contains(value[0])) { 
-                MessageBox.Show("Does not begin with the correct number!!!!");
                 return false;
             }
 
