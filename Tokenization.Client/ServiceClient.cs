@@ -13,7 +13,7 @@ namespace Tokenization.Client
             {
                 factory = new ChannelFactory<ITokenizationService>(
                     new BasicHttpBinding(),
-                    new EndpointAddress("http://localhost:8000/TokenService"));
+                    new EndpointAddress("http://localhost:8080/TokenizationService"));
             }
 
             return factory.CreateChannel();
