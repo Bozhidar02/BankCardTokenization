@@ -56,22 +56,30 @@ namespace Tokenization.Server
             return user?.Role;
         }
 
-        public string RegisterToken(string cardNumber)
+        public TokenResponse RegisterToken(string cardNumber)
         {
-            string normalizedCard = Normalize(cardNumber);
+            string normalized = Normalize(cardNumber);
 
-            if (!IsValid(normalizedCard))
-                throw new FaultException("Invalid card number");
+            if (!IsValid(normalized))
+            {
+                return new TokenResponse
+                {
+                    Success = false,
+                    Message = "Invalid card number."
+                };
+            }
 
             string token = GenerateNumericToken();
+            tokenMap[token] = normalized;
 
-            tokenMap[token] = normalizedCard;
-            TokenDataStore.SaveTokens(tokenMap);
-
-            TokenStore.Add(token, normalizedCard);
-
-            return token;//Format(token);
+            return new TokenResponse
+            {
+                Success = true,
+                Token = token,
+                Message = "Token generated successfully."
+            };
         }
+
 
         public string ResolveToken(string token)
         {
@@ -92,13 +100,53 @@ namespace Tokenization.Server
 
         private static bool IsValid(string value)
         {
-            return value.Length == 16 && value.All(char.IsDigit);
+            value = Normalize(value);
+
+            if (value.Length != 16) { 
+                MessageBox.Show("Invalid length!!!!");
+                return false;
+            }
+
+            // Must start with 3, 4, 5, or 6
+            if (!"3456".Contains(value[0])) { 
+                MessageBox.Show("Does not begin with the correct number!!!!");
+                return false;
+            }
+
+            return PassesLuhn(value);
         }
+
+
+        private static bool PassesLuhn(string number)
+        {
+            int sum = 0;
+            bool alternate = false;
+
+            for (int i = number.Length - 1; i >= 0; i--)
+            {
+                int n = number[i] - '0';
+
+                if (alternate)
+                {
+                    n *= 2;
+                    if (n > 9)
+                        n -= 9;
+                }
+
+                sum += n;
+                alternate = !alternate;
+            }
+
+            return sum % 10 == 0;
+        }
+
+
 
         private static string Normalize(string value)
         {
-            return value.Replace(" ", "");
+            return new string(value.Where(char.IsDigit).ToArray());
         }
+
 
         private static string Format(string value)
         {

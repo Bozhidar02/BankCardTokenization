@@ -11,7 +11,7 @@ namespace Tokenization.Contracts
 
 
         [OperationContract]
-        string RegisterToken(string cardNumber);
+        TokenResponse RegisterToken(string cardNumber);
 
         [OperationContract]
         string ResolveToken(string token);

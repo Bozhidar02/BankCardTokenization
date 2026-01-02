@@ -45,14 +45,15 @@ namespace Tokenization.Client
 
             string cardNumber = txtCardNumber.Text.Trim();
 
-            if (!IsValidCardNumber(cardNumber))
+            var result = client.RegisterToken(txtCardNumber.Text);
+
+            if (!result.Success)
             {
-                txtResult.Text = "Invalid card number. Must be exactly 16 digits.";
+                txtResult.Text = result.Message;
                 return;
             }
 
-            string token = client.RegisterToken(cardNumber);
-            txtResult.Text = $"Generated token:\n{token}";
+            txtResult.Text = $"Token:\n{result.Token}";
         }
 
 
